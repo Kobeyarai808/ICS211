@@ -248,6 +248,7 @@ class SortTest {
 
 	@Test
 	void test() {
+		//needed to call setUp because the @BeforeEach tag was not working
 		assert(stringSorter != null);
 		setUp();
 		testIntegerSorts(unsortedIntegers, sortedIntegers);

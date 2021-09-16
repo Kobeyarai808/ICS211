@@ -5,10 +5,11 @@ package edu.ics211.h03;
 
 /**
  * @author Kobey Arai
- *
+ * Comparator Integer type class
  */
 public class IntegerComparator implements java.util.Comparator<Integer> {
 	
+	//compares the two integers, returns distance between the two ints
 	public int compare(Integer int1, Integer int2) {
 		return int1.compareTo(int2);
 	}
