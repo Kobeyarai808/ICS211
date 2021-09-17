@@ -257,5 +257,4 @@ class SortTest {
 		setUp();
 		testStringSorts(unsortedStrings, sortedStrings);
 	}
-
 }
