@@ -76,9 +76,7 @@ public class SymbolTable implements SymbolTableInterface{
 		for(int i=0;i<str.size();i++) {
 			if(str.get(i).equals(value)){
 				str.remove(i);
-				for(int j=i; j<str.size();j++) {
-					str.set(j,str.get(j+1));
-				}
+				str.add("");
 				return true;
 			}
 		}
