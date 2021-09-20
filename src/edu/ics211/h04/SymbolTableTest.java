@@ -48,10 +48,10 @@ class SymbolTableTest {
 	private void getTest() {
 		//System.out.println(testTable);
 		//System.out.println(testTable2);
-		assert(testTable.get(0).equals("Hello"));
-		assert(!testTable.get(0).equals("Kobey"));
-		assert(testTable2.get(1).equals("Hawaii"));
-		assert(!testTable2.get(1).equals("Manoa"));
+		assert(testTable.get(0).compareToIgnoreCase("Hello")==0);
+		assert(testTable.get(0).compareToIgnoreCase("Kobey")!=0);
+		assert(testTable2.get(1).compareToIgnoreCase("Hawaii")==0);
+		assert(testTable2.get(1).compareToIgnoreCase("Manoa")!=0);
 	}
 	
 	private void addTest() {
@@ -82,10 +82,10 @@ class SymbolTableTest {
 	}
 	
 	private void toStringTest() {
-		assert(!testTable.toString().equals("should fail"));
-		assert(testTable.toString().equals("Hello ICS211 Kobey World   "));
-		assert(!testTable2.toString().equals("should fail"));
-		assert(testTable2.toString().equals("at Hawaii Manoa of University  "));
+		assert(testTable.toString().compareToIgnoreCase("should fail")!=0);
+		assert(testTable.toString().compareToIgnoreCase("Hello ICS211 Kobey World   ")==0);
+		assert(testTable2.toString().compareToIgnoreCase("should fail")!=0);
+		assert(testTable2.toString().compareToIgnoreCase("at Hawaii Manoa of University  ")==0);
 	}
 
 	@Test

@@ -74,7 +74,7 @@ public class SymbolTable implements SymbolTableInterface{
 	@Override
 	public boolean remove(String value) {
 		for(int i=0;i<str.size();i++) {
-			if(str.get(i).equals(value)){
+			if(str.get(i).compareToIgnoreCase(value)==0){
 				str.remove(i);
 				str.add("");
 				return true;
@@ -86,7 +86,7 @@ public class SymbolTable implements SymbolTableInterface{
 	@Override
 	public int indexOf(String value) {
 		for(int i=0;i<str.size();i++) {
-			if(str.get(i).equals(value)){
+			if(str.get(i).compareToIgnoreCase(value)==0){
 				return i;
 			}
 		}
