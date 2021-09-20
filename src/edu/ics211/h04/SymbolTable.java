@@ -4,11 +4,27 @@ import java.util.ArrayList;
 
 public class SymbolTable implements SymbolTableInterface{
 
+	public static void main(String[] args) {
+		System.out.println("Hello, World!");
+		SymbolTable testing = new SymbolTable();
+		testing.add("alpha");
+		testing.add("charlie");
+		testing.add("delta");
+		testing.add("bravo");
+		testing.add("foxtrot");
+		testing.add("echo");
+		testing.add("d");
+		testing.add("a");
+		testing.add("c");
+		testing.add("b");
+		System.out.println(testing);
+	}
 	private ArrayList<String> str;
 	
 	//Constructor creates a new instance of str that has a length of 1. 
 	public SymbolTable() {
-		str = new ArrayList<String>(1);
+		str = new ArrayList<String>();
+		str.add("");
 	}
 
 	@Override
@@ -24,11 +40,34 @@ public class SymbolTable implements SymbolTableInterface{
 	@Override
 	public boolean add(String value) {
 		for(int i=0;i<str.size();i++) {
-			if(str.get(i).equals(value)){
+			if(!str.get(i).equals("") && str.get(i).compareToIgnoreCase(value)==0){
 				return false;
 			}
+			else if(str.get(i).compareToIgnoreCase(value)>0) {
+				str.add(i,value);
+				if(str.get(str.size()-1).equals("")) {
+					str.remove(str.size()-1);
+				}
+				else {
+					for(int j=0;j<2;j++) {
+						str.add("");
+					}
+				}
+				return true;
+			}
 		}
-		str.add(value);
+		if(!str.get(str.size()-1).equals("")) {
+			str.add(value);
+			for(int j=0;j<2;j++) {
+				str.add("");
+			}
+		}
+		else if(str.get(str.size()-1).equals("")){
+			str.set(str.size()-1,value);
+		}
+		else {
+			str.set(str.size()-1,value);
+		}
 		return true;
 	}
 
@@ -37,6 +76,9 @@ public class SymbolTable implements SymbolTableInterface{
 		for(int i=0;i<str.size();i++) {
 			if(str.get(i).equals(value)){
 				str.remove(i);
+				for(int j=i; j<str.size();j++) {
+					str.set(j,str.get(j+1));
+				}
 				return true;
 			}
 		}
@@ -55,12 +97,13 @@ public class SymbolTable implements SymbolTableInterface{
 	
 	@Override
 	public String toString() {
+		if(str.size()==0) {
+			return "";
+		}
 		String result = str.get(0);
-		
 		for(int i=1;i<str.size();i++) {
 			result+= " " + str.get(i);
 		}
 		return result;
 	}
-
 }
