@@ -38,14 +38,13 @@ class SymbolTableTest {
 	
 	private void sizeTest() {
 		assert(testTable.size()==4);
-		System.out.println(testTable2.size());
-		assert(testTable2.size()==5);
+		assert(testTable2.size()==7);
 	}
 	
 	private void getTest() {
 		assert(testTable.get(0).equals("Hello"));
 		assert(!testTable.get(0).equals("Kobey"));
-		assert(testTable2.get(1).equals("of"));
+		assert(testTable2.get(1).equals("Hawaii"));
 		assert(!testTable2.get(1).equals("Manoa"));
 	}
 	

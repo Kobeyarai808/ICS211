@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class SymbolTable implements SymbolTableInterface{
 
 	public static void main(String[] args) {
-		System.out.println("Hello, World!");
 		SymbolTable testing = new SymbolTable();
 		testing.add("alpha");
 		testing.add("charlie");
@@ -17,6 +16,7 @@ public class SymbolTable implements SymbolTableInterface{
 		testing.add("a");
 		testing.add("c");
 		testing.add("b");
+		System.out.println(testing.size());
 		System.out.println(testing);
 	}
 	private ArrayList<String> str;
@@ -43,7 +43,7 @@ public class SymbolTable implements SymbolTableInterface{
 			if(!str.get(i).equals("") && str.get(i).compareToIgnoreCase(value)==0){
 				return false;
 			}
-			else if(str.get(i).compareToIgnoreCase(value)>0) {
+			else if(!str.get(i).equals("") && str.get(i).compareToIgnoreCase(value)>0) {
 				str.add(i,value);
 				if(str.get(str.size()-1).equals("")) {
 					str.remove(str.size()-1);
@@ -62,8 +62,8 @@ public class SymbolTable implements SymbolTableInterface{
 				str.add("");
 			}
 		}
-		else if(str.get(str.size()-1).equals("")){
-			str.set(str.size()-1,value);
+		else if(str.size()>1 && str.get(str.size()-2).equals("")){
+			str.set(str.size()-2,value);
 		}
 		else {
 			str.set(str.size()-1,value);
