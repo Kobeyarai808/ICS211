@@ -41,7 +41,7 @@ class SymbolTableTest {
 	private void sizeTest() {
 		//System.out.println(testTable);
 		//System.out.println(testTable2);
-		assert(testTable.size()==4);
+		assert(testTable.size()==7);
 		assert(testTable2.size()==7);
 	}
 	

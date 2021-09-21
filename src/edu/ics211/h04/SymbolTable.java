@@ -1,6 +1,7 @@
 package edu.ics211.h04;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SymbolTable implements SymbolTableInterface{
 
@@ -16,67 +17,64 @@ public class SymbolTable implements SymbolTableInterface{
 		testing.add("a");
 		testing.add("c");
 		testing.add("b");
-		System.out.println(testing.size());
 		System.out.println(testing);
 	}
-	private ArrayList<String> str;
+	
+	private String[] arr = new String[1];
+	private int size;
 	
 	//Constructor creates a new instance of str that has a length of 1. 
 	public SymbolTable() {
-		str = new ArrayList<String>();
-		str.add("");
+		arr[0] = "";
 	}
 
 	@Override
 	public int size() {
-		return str.size();
+		return size;
 	}
 
 	@Override
 	public String get(int index) {
-		return str.get(index);
+		return arr[index];
 	}
 
 	@Override
 	public boolean add(String value) {
-		for(int i=0;i<str.size();i++) {
-			if(!str.get(i).equals("") && str.get(i).compareToIgnoreCase(value)==0){
-				return false;
+		System.out.println("size: "+size);
+		if(size == arr.length-1) {
+			arr = Arrays.copyOf(arr, arr.length+3);
+			for(int i=size;i<arr.length;i++) {
+				arr[i]="";
 			}
-			else if(!str.get(i).equals("") && str.get(i).compareToIgnoreCase(value)>0) {
-				str.add(i,value);
-				if(str.get(str.size()-1).equals("")) {
-					str.remove(str.size()-1);
-				}
-				else {
-					for(int j=0;j<2;j++) {
-						str.add("");
-					}
-				}
+		}
+		System.out.println("value: "+value);
+		if(size==0) {
+			arr[0]=value;
+			size++;
+			return true;
+		}
+		for(int i=size;i>0;i--) {
+			if(value.compareToIgnoreCase(arr[i-1])>0) {
+				arr[i] = value;
+				size++;
 				return true;
 			}
-		}
-		if(!str.get(str.size()-1).equals("")) {
-			str.add(value);
-			for(int j=0;j<2;j++) {
-				str.add("");
+			else {
+				arr[i]=arr[i-1];
 			}
 		}
-		else if(str.size()>1 && str.get(str.size()-2).equals("")){
-			str.set(str.size()-2,value);
-		}
-		else {
-			str.set(str.size()-1,value);
-		}
-		return true;
+		return false;
 	}
-
+	
 	@Override
 	public boolean remove(String value) {
-		for(int i=0;i<str.size();i++) {
-			if(str.get(i).compareToIgnoreCase(value)==0){
-				str.remove(i);
-				str.add("");
+		for(int i=0;i<size();i++) {
+			if(arr[i].compareToIgnoreCase(value)==0){
+				for(int j=i;j<size-1;j++) {
+					arr[i]=arr[i+1];
+				}
+				arr[size-1]="";
+				size--;
 				return true;
 			}
 		}
@@ -85,8 +83,8 @@ public class SymbolTable implements SymbolTableInterface{
 
 	@Override
 	public int indexOf(String value) {
-		for(int i=0;i<str.size();i++) {
-			if(str.get(i).compareToIgnoreCase(value)==0){
+		for(int i=0;i<size;i++) {
+			if(arr[i].compareToIgnoreCase(value)==0){
 				return i;
 			}
 		}
@@ -95,12 +93,12 @@ public class SymbolTable implements SymbolTableInterface{
 	
 	@Override
 	public String toString() {
-		if(str.size()==0) {
+		if(size==0) {
 			return "";
 		}
-		String result = str.get(0);
-		for(int i=1;i<str.size();i++) {
-			result+= " " + str.get(i);
+		String result = arr[0];
+		for(int i=1;i<size;i++) {
+			result+= " " + arr[i];
 		}
 		return result;
 	}
