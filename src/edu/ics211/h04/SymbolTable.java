@@ -53,10 +53,19 @@ public class SymbolTable implements SymbolTableInterface{
 			size++;
 			return true;
 		}
-		for(int i=size;i>0;i--) {
+		for(int i=size;i>=0;i--) {
+			if(i==0) {
+				arr[i]=value;
+				size++;
+				return true;
+			}
 			if(value.compareToIgnoreCase(arr[i-1])>0) {
 				arr[i] = value;
 				size++;
+				for(int k=0; k<size();k++) {
+					System.out.print(" "+arr[k]);
+				}
+				System.out.print("\n");
 				return true;
 			}
 			else {
