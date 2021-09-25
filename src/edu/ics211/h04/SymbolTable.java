@@ -46,12 +46,15 @@ public class SymbolTable implements SymbolTableInterface{
 	 * SymbolTable, it will sort the SymbolTable and return true. 
 	 * Run time best: O(1)
 	 * 		If size is 0, the String value will be assigned to arr[0] and return true. 
+	 * 		No loops will run so best case will be just O(1). 
 	 * Run time average: O(n)
-	 * 		If adding something to the middle of an SymbolTable, it will exit midway through or 
-	 * 		the for loop. This will run n/2 times. Therefore O(n) time. 
+	 * 		If adding something to the middle of an SymbolTable, it will enter the for 
+	 * 		loop and then exit midway through the for loop. This will run n/2 times since
+	 *		it loops through only the fist half. That would run O(n) times. 
 	 * Run time worst: O(n)
-	 * 		If something is added to the front of the SymbolTable, it will loop through the entire
-	 * 		for loop. This will run n times. Therefore O(n)
+	 * 		Worst case is if something is added to the front of the SymbolTable and that 
+	 * 		we would need to add additional indexes. It will loop through the entire for 
+	 * 		loop and therefore run n times. Therefore O(n)
 	 */
 	@Override
 	public boolean add(String value) {
@@ -116,10 +119,13 @@ public class SymbolTable implements SymbolTableInterface{
 	 * 		If size is 0, it will not enter any loops and return false.
 	 * Run time average: O(n)
 	 * 		Although there are 2 loops, the second one picks up where the first one
-	 * 		stopped. After the inner loop runs, it returns true. 
+	 * 		stopped. After the inner loop runs, it returns true. On average, the method
+	 * 		will iterate through half the first array and trigger the second array to 
+	 * 		run the remaining part. This means that the loops will run n times. 
 	 * Run time worst: O(n)
-	 * 		Although there are 2 loops, the second one picks up where the first one
-	 * 		stopped. After the inner loop runs, it returns true. 
+	 * 		The worst case is the same as the average because if the top loops through all
+	 * 		elements, the inner loop will not loop any elements. If the outer loop runs only
+	 * 		once, the inner loop will run n times. Therefore, the worst case is also O(n). 
 	 */
 	@Override
 	public boolean remove(String value) {
