@@ -1,0 +1,107 @@
+Analysis - Amanda Nitta & Kobey Arai
+
+add(Value)
+
+Best Case =
+	The best case for the add method is that the first node of the LinkedList is null and
+	the value is then added to the front/ first node of the LinkedList. This is the best
+	case since it goes through the method and returns within the first lines. Therefore leading
+	it to run the statements only and have a O notation of O(1).
+
+-- the node is null
+-- the value is then added at the front
+-- O(1)
+
+Average Case =
+	The average case is that the node is not null and then enters the for loop and the next
+	node is null, making it enter the if statements and then the value being greater than the current
+	node. Therefore, then calling to the afterMethod that runs a set of statements and an if statements
+	to insert the sorted value in its appropriate place. This is the average case since it simply
+	is just adding to the end of the linked node. The O documentation is O(n) due to the for loop.
+
+
+-- the node is not null, but the next node is null  O(1)
+-- if node is not null goes through loop O(n)
+-- addAfter O(1)
+
+-- O(n)
+
+Worst Case =
+	The worst case is that the node is null and has to be inserted in the middle of the LinkedList.
+	Therefore leading it to run through the beginning statements then the for loop till it finds when it can be
+	put in after a value. This would be the worse case since it would have to iterate through the for loop
+	n times. Therefore making an O notation of O(n).
+
+-- the node is not null and is inserted in the middle of the linked list
+-- add after O(1)
+-- for loop O(n)
+
+remove(Value)
+
+Best Case ==
+	The best case is that the value is in the first node since since then it wouldn't need to enter the while
+	loop and only have to go through the if statement. Therefore, keading for it to be an O notation of
+	O(1)
+
+-- the value is in the first node
+-- O(1)
+
+Average Case
+	The average case is the value exists in the middle of the linked list, so it doesn't go into the if statement
+	since its false and then goes into the while and iterates through half of the linked list to  find the value
+	and then connects the nodes surrounding back into a singly linked list. Therefore, the O notation would be
+	O(n) due to the while loop primarily.
+
+-- the value exists in the middle of the LinkedList
+-- goes through the while and iterates through it
+looking for the value O(n)
+
+-- O(n)
+
+Worse Case
+	The worse case is that the value needing to be removed is at the end of the linkedList. So therefore it go into
+	the if statement since its false, and then goes through the whole while loop till the end of the linkedList
+	and then removes the value. The O notation would be O(n) due to the while loop primarily.
+
+-- the value exists at the end of the Linked List
+-- goes through the whole while and iterates looking for it
+
+-- O(n)
+
+next() -- evenIterator
+
+Best Case
+	The best case is that the node that is being looked at is null since then it wouldn't enter the if statement,
+	and therefore have O(1) for the O notation.
+
+-- there is a null at the node looking at
+-- O(1)
+
+Average Case
+	The average case is that the node looking at is not null, and the following node is null, so therefore it goes
+	through the first if statements and gets the result and then iterates to the next node and then there is nothing there
+	so it  goes to false and then returns the result. Due to it being statements, it causes the O notation
+	to be O(1).
+
+-- has a value that is not null at the current node
+and the following node is null
+-- goes through if statement and gets the result
+-- sets current to the next node
+-- checks if next one is null
+-- the next one is null and does not enter if and returns result
+-- O(1)
+
+Worse Case
+	The worse case is that the node being looked at is not null and the following one is not null either and therefore
+	it goes through the first if statement and gets the result, and then sets the node looking at to the next node
+	and then since its not null goes through the if statement and iterates to the next ndoe, and then returns the result.
+	Due to it being statements this makes the O notation to be O(1).
+
+-- has a value that is not null at the current node and the follwoing
+-- goes through the if statement and gets the result
+-- sets the current node to the next node
+-- checks if null
+-- sets the current node to the next one again
+-- returns the value
+
+-- O(1)
