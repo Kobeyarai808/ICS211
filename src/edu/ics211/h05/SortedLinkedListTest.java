@@ -49,30 +49,45 @@ class SortedLinkedListTest {
 
             java.util.Iterator<String> it = stringLL.iterator();
             String prev = stringLL.get(0);
+            String created = "";
             for(int i=0;i<stringLL.size();i++){
                 assert(it.hasNext());
                 assert(sc.compare(prev, prev=it.next())<=0);
+                created+= " " + prev;
             }
+            System.out.println(created);
 
             java.util.Iterator<String> oIt = stringLL.oddIterator();
-            String prevO = stringLL.get(0);
+            String prevO = stringLL.get(1);
+            String createdO = "";
             for(int i=0;i<stringLL.size()/2;i++){
                 assert(oIt.hasNext());
                 assert(sc.compare(prevO, prevO=oIt.next())<=0);
+                createdO += " " + prevO;
             }
+            System.out.println(createdO);
 
             java.util.Iterator<String> eIt = stringLL.evenIterator();
             String prevE = stringLL.get(0);
-            for(int i=0;i<stringLL.size()/2;i++){
+            String createdE = "";
+            int index;
+            if(stringLL.size()%2==1){
+                index = (stringLL.size()/2)+1;
+            }
+            else{
+                index = stringLL.size()/2;
+            }
+            for(int i=0;i<index;i++){
                 assert(eIt.hasNext());
                 assert(sc.compare(prevE, prevE=eIt.next())<=0);
+                createdE += " " + prevE;
             }
-
+            System.out.println(createdE);
 
         }
         public void testSortedLinkedListDouble () {
 
-            SortedLinkedList<Double> doubLL = new SortedLinkedList<Double>(new DoublesComparator());
+            /***SortedLinkedList<Double> doubLL = new SortedLinkedList<Double>(new DoublesComparator());
             doubLL.add(1.0);
             doubLL.add(2.0);
             doubLL.add(1.0);
@@ -80,19 +95,20 @@ class SortedLinkedListTest {
             doubLL.add(5.0);
             doubLL.add(3.0);
             doubLL.add(5.0);
-            System.out.println(doubLL.toString());
+            System.out.println(doubLL.toString());***/
 
 
 
             double doubleValues[] = { 0.0, 1.0, 2.0, Math.E, Math.PI, 10.0 };
 
             Random rand = new Random();
-            System.out.println(dc.compare(doubleValues[5],doubleValues[5]));
+            //System.out.println(dc.compare(doubleValues[5],doubleValues[5]));
 
             for( int i = 0; i < 10 ; i++ ) {
                 int randomGenerator = rand.nextInt(6);
                 doubleLL.add(doubleValues[randomGenerator]);
             }
+            //System.out.println(doubleLL);
             for(int i=0;i<doubleLL.size()-1;i++){
                 assert(dc.compare(doubleLL.get(i), doubleLL.get(i+1))<=0);
             }
@@ -106,11 +122,11 @@ class SortedLinkedListTest {
                 created += " " + prev;
             }
             System.out.println(created);
-            System.out.println(doubleLL);
 
             java.util.Iterator<Double> oIt = doubleLL.oddIterator();
             double prevO = doubleLL.get(1);
             String createdO = "";
+
             for(int i=0;i<doubleLL.size()/2;i++){
                 assert(oIt.hasNext());
                 assert(dc.compare(prevO, prevO=oIt.next())<=0);
@@ -121,7 +137,14 @@ class SortedLinkedListTest {
             java.util.Iterator<Double> eIt = doubleLL.evenIterator();
             double prevE = doubleLL.get(0);
             String createdE = "";
-            for(int i=0;i<doubleLL.size()/2;i++){
+            int index;
+            if(doubleLL.size()%2==1){
+                index = (doubleLL.size()/2)+1;
+            }
+            else{
+                index = doubleLL.size()/2;
+            }
+            for(int i=0;i<index;i++){
                 assert(eIt.hasNext());
                 assert(dc.compare(prevE, prevE=eIt.next())<=0);
                 createdE += " " + prevE;
