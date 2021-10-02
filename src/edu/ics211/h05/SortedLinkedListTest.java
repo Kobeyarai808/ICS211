@@ -19,7 +19,7 @@ class SortedLinkedListTest {
         doubleLL = new SortedLinkedList<Double>(dc);
         stringLL = new SortedLinkedList<String>(sc);
     }
-        @Test
+    
         void testSortedLinkedListString() {
             stringLL.add("banana");
             assert(stringLL.get(0).equals("banana"));
