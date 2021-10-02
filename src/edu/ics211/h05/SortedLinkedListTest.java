@@ -50,26 +50,33 @@ class SortedLinkedListTest {
             java.util.Iterator<String> it = stringLL.iterator();
             String prev = stringLL.get(0);
             String created = "";
+            int count = 0;
             for(int i=0;i<stringLL.size();i++){
                 assert(it.hasNext());
                 assert(sc.compare(prev, prev=it.next())<=0);
+                count+=prev.length();
                 created+= " " + prev;
             }
             System.out.println(created);
+            System.out.println("Count Total: "+count);
 
             java.util.Iterator<String> oIt = stringLL.oddIterator();
             String prevO = stringLL.get(1);
             String createdO = "";
+            int countO = 0;
             for(int i=0;i<stringLL.size()/2;i++){
                 assert(oIt.hasNext());
                 assert(sc.compare(prevO, prevO=oIt.next())<=0);
+                countO+=prevO.length();
                 createdO += " " + prevO;
             }
             System.out.println(createdO);
+            System.out.println("Count Odd: "+countO);
 
             java.util.Iterator<String> eIt = stringLL.evenIterator();
             String prevE = stringLL.get(0);
             String createdE = "";
+            int countE = 0;
             int index;
             if(stringLL.size()%2==1){
                 index = (stringLL.size()/2)+1;
@@ -80,10 +87,11 @@ class SortedLinkedListTest {
             for(int i=0;i<index;i++){
                 assert(eIt.hasNext());
                 assert(sc.compare(prevE, prevE=eIt.next())<=0);
+                countE+=prevE.length();
                 createdE += " " + prevE;
             }
             System.out.println(createdE);
-
+            System.out.println("Count Even: "+countE);
         }
         public void testSortedLinkedListDouble () {
 
@@ -116,27 +124,34 @@ class SortedLinkedListTest {
             java.util.Iterator<Double> it = doubleLL.iterator();
             double prev = doubleLL.get(0);
             String created = "";
+            int count =0;
             for(int i=0;i<doubleLL.size();i++){
                 assert(it.hasNext());
                 assert(dc.compare(prev, prev=it.next())<=0);
+                count+=prev;
                 created += " " + prev;
             }
             System.out.println(created);
+            System.out.println("Count Total: "+count);
 
             java.util.Iterator<Double> oIt = doubleLL.oddIterator();
             double prevO = doubleLL.get(1);
             String createdO = "";
-
+            int countO=0;
             for(int i=0;i<doubleLL.size()/2;i++){
                 assert(oIt.hasNext());
                 assert(dc.compare(prevO, prevO=oIt.next())<=0);
+                createdO+=prevO;
                 createdO += " " + prevO;
+                
             }
             System.out.println(createdO);
+            System.out.println("Count Odd: "+countO);
 
             java.util.Iterator<Double> eIt = doubleLL.evenIterator();
             double prevE = doubleLL.get(0);
             String createdE = "";
+            int countE=0;
             int index;
             if(doubleLL.size()%2==1){
                 index = (doubleLL.size()/2)+1;
@@ -148,8 +163,10 @@ class SortedLinkedListTest {
                 assert(eIt.hasNext());
                 assert(dc.compare(prevE, prevE=eIt.next())<=0);
                 createdE += " " + prevE;
+                countE+=prevE;
             }
             System.out.println(createdE);
+            System.out.println("Count Even: "+countE);
         }
         @Test
         void test () {
