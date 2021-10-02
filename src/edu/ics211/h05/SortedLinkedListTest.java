@@ -124,7 +124,7 @@ class SortedLinkedListTest {
             java.util.Iterator<Double> it = doubleLL.iterator();
             double prev = doubleLL.get(0);
             String created = "";
-            int count =0;
+            double count =0;
             for(int i=0;i<doubleLL.size();i++){
                 assert(it.hasNext());
                 assert(dc.compare(prev, prev=it.next())<=0);
@@ -137,11 +137,11 @@ class SortedLinkedListTest {
             java.util.Iterator<Double> oIt = doubleLL.oddIterator();
             double prevO = doubleLL.get(1);
             String createdO = "";
-            int countO=0;
+            double countO=0;
             for(int i=0;i<doubleLL.size()/2;i++){
                 assert(oIt.hasNext());
                 assert(dc.compare(prevO, prevO=oIt.next())<=0);
-                createdO+=prevO;
+                countO+=prevO;
                 createdO += " " + prevO;
                 
             }
@@ -151,7 +151,7 @@ class SortedLinkedListTest {
             java.util.Iterator<Double> eIt = doubleLL.evenIterator();
             double prevE = doubleLL.get(0);
             String createdE = "";
-            int countE=0;
+            double countE=0;
             int index;
             if(doubleLL.size()%2==1){
                 index = (doubleLL.size()/2)+1;
