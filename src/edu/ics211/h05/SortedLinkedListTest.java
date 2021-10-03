@@ -1,8 +1,10 @@
 package edu.ics211.h05;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 class SortedLinkedListTest {
@@ -59,7 +61,10 @@ class SortedLinkedListTest {
             }
             System.out.println(created);
             System.out.println("Count Total: "+count);
-
+            Assertions.assertThrows(NoSuchElementException.class, () -> {
+                it.next();
+              });
+            
             java.util.Iterator<String> oIt = stringLL.oddIterator();
             String prevO = stringLL.get(1);
             String createdO = "";
@@ -143,8 +148,11 @@ class SortedLinkedListTest {
                 assert(dc.compare(prevO, prevO=oIt.next())<=0);
                 countO+=prevO;
                 createdO += " " + prevO;
-                
             }
+            Assertions.assertThrows(NoSuchElementException.class, () -> {
+                it.next();
+              });
+            System.out.println("Caught Exception");
             System.out.println(createdO);
             System.out.println("Count Odd: "+countO);
 
