@@ -42,7 +42,7 @@ public class Reversible {
 		//System.out.println(temp);
 		n_reverse = Integer.parseInt(temp);
 		//System.out.println(n_reverse);
-		sum = input + n_reverse;
+		sum = n + n_reverse;
 		
 		//Verify that result is all odds. Throw exception otherwise
 		//System.out.println(sum);
