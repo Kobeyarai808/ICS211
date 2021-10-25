@@ -26,6 +26,9 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     }
 
     @Override public boolean offer(Packet packet) {
+        if(size==8){
+            return false;
+        }
         queue.add(packet);
         return true;
     }
@@ -64,7 +67,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     }
 
     /**
-     * @author         Edo Biagioni
+     * @author         Edo Biagioni and Kobey Arai
      * @lecture        ICS 211 Feb 3 (or later)
      * @date           February 1, 2011, modified October 24, 2021
      */
