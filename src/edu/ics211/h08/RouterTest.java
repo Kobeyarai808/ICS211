@@ -9,6 +9,7 @@ class RouterTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+
 	}
 
 	@Test

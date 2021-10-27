@@ -34,7 +34,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     }
 
     @Override public Packet poll() {
-        return iterator().next();
+        return iterator(). next();
     }
 
     @Override public Packet peek() {
@@ -79,7 +79,8 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
         }
 
         public boolean hasNext() {
-            return (current.next != null);
+            System.out.println(current);
+            return (current != null);
         }
 
         public Packet next() {
