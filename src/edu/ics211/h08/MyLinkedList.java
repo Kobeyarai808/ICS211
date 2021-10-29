@@ -48,9 +48,6 @@ public class MyLinkedList<E> {
     // this is the end of the linked list.  If the list is empty, it is null
     protected LinkedNode<E> tail;
     protected int size;
-    // there are some relationships between the class variables.  This
-    // method checks that these relationships always hold.  Any
-    // property that always holds is called an invariant.
 
     // the property may not hold in the middle of a method,
     // so only call this at the beginning or end of a public method.
@@ -67,40 +64,6 @@ public class MyLinkedList<E> {
     }
 
     /**
-     * checks class invariants
-     *
-     * @throws java.lang.AssertionError if the invariant is violated
-     */
-    private void checkInvariants() {
-        // uncomment the next line to skip the checks:
-        // return;
-        // either head and tail are both null, or neither is null.
-        // size is zero if and only if they are null, and otherwise is positive
-        verify((head == null) == (tail == null));
-        verify((size == 0) == (head == null));
-        verify(size >= 0);
-        // if the list only has one element, head should be the same as tail
-        // (and also if the list has no elements), otherwise they should differ
-        verify((head == tail) == (size <= 1));
-        // a non-null tail variable should always have a null "next" field
-        verify((tail == null) || (tail.next == null));
-        // check to make sure size is the same as the length of the list.
-        // this code takes O(n), so comment it out if performance is important
-        int measuredSize = 0;
-        LinkedNode<E> node = head;
-        // if visitedLast is null, the list is empty, and tail should also be null
-        LinkedNode<E> visitedLast = null;
-        while (node != null) {
-            visitedLast = node;
-            node = node.next;
-            measuredSize++;
-        }
-        verify(measuredSize == size);
-        // also make sure "last" really is the last node in the linked list
-        verify(visitedLast == tail);
-    }
-
-    /**
      * initializes an empty linked list
      */
     Comparator comparator;
@@ -109,8 +72,6 @@ public class MyLinkedList<E> {
         head = null;
         tail = null;
         size = 0;
-        // one of the constructor's jobs is to make sure that the invariants hold.
-        checkInvariants();
     }
 
     // these private (helper) methods simplify implementation of
@@ -169,7 +130,6 @@ public class MyLinkedList<E> {
     
     public boolean add(E value) {
         LinkedNode<E> currentNode = head;
-        checkInvariants(); // useful for debugging
         if (currentNode != null) {
             // adds at the end of the linkedNode
             addAtEnd(value);
@@ -180,7 +140,6 @@ public class MyLinkedList<E> {
             currentNode = head;
         }
         size++;
-        checkInvariants();  // invariants valid at start, are they still valid?
         // i.e., did this method break the invariants?
         return true;
     }
@@ -194,7 +153,6 @@ public class MyLinkedList<E> {
      *                                   or greater than the number of elements in the linked list
      */
     public void add(int index, E value) {
-        checkInvariants();
         if ((index < 0) || (index > size)) {
             String badIndex =
                     new String("index " + index + " must be between 0 and " + size);
@@ -206,7 +164,6 @@ public class MyLinkedList<E> {
             addAfter(nodeAtPosition(index - 1), value);
         }
         size++;
-        checkInvariants();
     }
 
     /**
@@ -262,14 +219,12 @@ public class MyLinkedList<E> {
 
     // finds the indexOf of the node
      public int indexOf(E value) {
-        checkInvariants();
         int index = 0;
         for (int i = 0; i < size; i++) {
             if (comparator.compare(value, nodeAtPosition(i).item) == 0) {
                 index = i;
                 return index;
             }
-            checkInvariants();
         }
         return -1;
     }
@@ -334,7 +289,6 @@ public class MyLinkedList<E> {
      * @return the string representation of the list
      */
     public String toString() {
-        checkInvariants();
         LinkedNode<E> node = head;
         StringBuffer result = new StringBuffer();
         while (node != null) {
@@ -344,7 +298,6 @@ public class MyLinkedList<E> {
                 result.append(" ==> ");
             }
         }
-        checkInvariants();   // make sure we didn't break anything
         return result.toString();
     }
 }
