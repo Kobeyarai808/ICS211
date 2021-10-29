@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
 class RouterTest {
 	Router testRouter;
 	int[][] numPackets = new int [8][10];
+	int[][] numberOfPackets = new int[8][10];
 
 	void setUp() {
 		testRouter = new Router(new PacketSender());
-		numPackets = new int [][] {
+		numberOfPackets = new int [][] {
 				{0,1,2,3,4,5,6,7,0,1},
 				{0,1,2,3,4,5,6,7,0,1},
 				{0,1,2,3,4,5,6,7,0,1},
@@ -20,13 +21,17 @@ class RouterTest {
 				{0,1,2,3,4,5,6,7,0,1},
 				{0,1,2,3,4,5,6,7,0,1},
 				{0,1,2,3,4,5,6,7,0,1}};
+
+		numPackets = new int [][] {{1,2,4,6,3,5,2,1,7,4}, {0,1,2,0,1,2,1,2,1,0},
+				{0,1,2,0,1,2,1,2,1,0},{0,1,2,0,1,2,1,2,1,0},{0,1,2,0,1,2,1,2,1,0},{1,1,2,0,1,2,1,2,1,0},
+				{0,1,2,0,1,2,1,2,1,0},{0,1,2,0,1,2,1,2,1,0}};
 	}
 
 	private void RouterTest() {
-		for(int i=0; i<numPackets.length; i++){
-			for(int j=0; j<numPackets[0].length; j++){
+		for(int j=0; j<numPackets[0].length; j++){
+			for(int i=0; i<numPackets.length; i++){
 				for(int k = 0; k<numPackets[i][j]; k++){
-					if(j>=4 && j<=9){
+					if(j>=4){
 						if(k == 0) {
 							testRouter.acceptPacket(new Packet(0));//assertTrue
 						}
@@ -39,8 +44,6 @@ class RouterTest {
 					}
 				}
 			}
-		}
-		for(int i=0; i<10;i++){
 			testRouter.advanceTime();
 			System.out.println();
 		}
@@ -48,8 +51,8 @@ class RouterTest {
 		assertEquals(10,testRouter.getTime());
 		java.util.List<Packet> droppedPackets = testRouter.getDroppedPackets();
 		assertEquals(16,droppedPackets.size());
-		java.util.List<Packet> noDroppedPackets = testRouter.getDroppedPackets();
-		assertEquals(0, noDroppedPackets.size());
+		java.util.List<Packet> droppedPackets2 = testRouter.getDroppedPackets();
+		assertEquals(0, droppedPackets2.size());
 	}
 
 	private void overFlowRouter() {
