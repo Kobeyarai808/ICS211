@@ -2,7 +2,6 @@ package edu.ics211.h08;
 
 import java.util.AbstractQueue;
 import java.util.Iterator;
-import edu.ics211.h08.MyLinkedList;
 import java.util.Queue;
 
 public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> {
@@ -30,7 +29,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     }
 
     @Override public boolean offer(Packet packet) {
-        if(size==8){
+        if(size==10){
             return false;
         }
         size++;
