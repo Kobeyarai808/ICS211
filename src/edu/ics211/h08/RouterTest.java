@@ -31,18 +31,20 @@ class RouterTest {
 		for(int j=0; j<numPackets[0].length; j++){
 			for(int i=0; i<numPackets.length; i++){
 				for(int k = 0; k<numPackets[i][j]; k++){
-					testRouter.acceptPacket(new Packet(k));
+					testRouter.acceptPacket(new Packet(i));
+					//System.out.println("Dropped packets: "+testRouter.getDroppedPackets());
 				}
 			}
 			//advance the time to remove 1 packet from each queue
 			testRouter.advanceTime();
 			System.out.println();
+			//System.out.println("router time:"+testRouter.getTime());
 		}
 
 		//Assertions to see if the loops and methods ran correctly and without invariants.
 		assertEquals(10,testRouter.getTime());
 		java.util.List<Packet> droppedPackets = testRouter.getDroppedPackets();
-		assertEquals(43,droppedPackets.size());//Why did it change from 16... Oh wells.
+		assertEquals(16,droppedPackets.size());//Why did it change from 16... Oh wells.
 		java.util.List<Packet> droppedPackets2 = testRouter.getDroppedPackets();
 		assertEquals(0, droppedPackets2.size());
 	}

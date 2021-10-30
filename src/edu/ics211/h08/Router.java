@@ -37,6 +37,7 @@ public class Router implements RouterInterface {
 
 	@Override
 	public boolean acceptPacket(Packet p) {
+		//System.out.println("Trying to send packet to queue " + p.getAddress());
 		// get address
 		int address = p.getAddress();
 		// add address to queue, if fails will add to droppedPackets

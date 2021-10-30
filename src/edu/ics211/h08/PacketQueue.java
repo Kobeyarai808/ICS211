@@ -1,5 +1,6 @@
 package edu.ics211.h08;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.AbstractQueue;
 import java.util.Iterator;
 import java.util.Queue;
@@ -44,12 +45,50 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
 
     //removes a packet from the queue
     @Override public Packet poll() {
+        Packet temp = iterator().next(); //allows exception to be thrown and not modify size
         size--;
-        return iterator().next();
+        return temp;
     }
 
     //returns current packet without incrementing the iterator
     @Override public Packet peek() {
         return iteratorNoIncrement().next();
     }
+
+    /*private class LinkedList{
+
+        private class LinkedNode{
+            Packet item;
+            LinkedNode next;
+            private LinkedNode(Packet item){
+                this.item = item;
+                next = null;
+            }
+        }
+
+        LinkedNode head;
+        LinkedNode tail;
+        int size;
+        private LinkedList(){
+            head = null;
+            tail = null;
+            size = 0;
+        }
+        private void add(Packet item){
+            tail.next = new LinkedNode(item);
+            tail = tail.next;
+        }
+
+        private class Iterator implements java.util.Iterator {
+            private Iterator(){
+
+            }
+            @Override public boolean hasNext() {
+
+            }
+            @Override public Object next() {
+                return null;
+            }
+        }
+    }*/
 }

@@ -5,26 +5,60 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 class QueueTest {
 
 	PacketQueue test;
+	Packet item0;
+	Packet item1;
+	Packet item2;
+	Packet item3;
+	Packet item4;
+	Packet item5;
+	Packet item6;
+	Packet item7;
+	Packet item8;
+	Packet item9;
 
 	@BeforeEach
 	void setUp() {
 		test = new PacketQueue();
+		item0 = new Packet(0);
+		item1 = new Packet(1);
+		item2 = new Packet(2);
+		item3 = new Packet(3);
+		item4 = new Packet(4);
+		item5 = new Packet(5);
+		item6 = new Packet(6);
+		item7 = new Packet(7);
+		item8 = new Packet(8);
+		item9 = new Packet(9);
+	}
+
+	void testEmptyQueue(){
+		assertThrows(NoSuchElementException.class, () -> test.peek());
+		assertThrows(NoSuchElementException.class, () -> test.poll());
+		assertTrue(test.size()==0);
+		assertTrue(test.offer(item0));
+		assertTrue(test.peek().equals(item0));
+		assertTrue(test.size()==1);
+		assertTrue(test.poll().equals(item0));
+		assertTrue(test.size()==0);
+		assertThrows(NoSuchElementException.class, () -> test.peek());
+		assertThrows(NoSuchElementException.class, () -> test.poll());
+	}
+	void testQueue1Element(){
+
+	}
+	void testQueueNearFull(){
+
+	}
+	void testQueueFull(){
+
 	}
 
 	void testQueue() {
-		Packet item0 = new Packet(0);
-		Packet item1 = new Packet(1);
-		Packet item2 = new Packet(2);
-		Packet item3 = new Packet(3);
-		Packet item4 = new Packet(4);
-		Packet item5 = new Packet(5);
-		Packet item6 = new Packet(6);
-		Packet item7 = new Packet(7);
-		Packet item8 = new Packet(8);
-		Packet item9 = new Packet(9);
 
 
 		assertTrue(test.size()==0);
@@ -53,6 +87,9 @@ class QueueTest {
 
 	@Test
 	void test() {
+		setUp();
+		testEmptyQueue();
+		setUp();
 		testQueue();
 		//fail("Not yet implemented");
 	}
