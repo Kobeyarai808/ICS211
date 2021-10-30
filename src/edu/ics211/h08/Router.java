@@ -1,6 +1,7 @@
 package edu.ics211.h08;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Router implements RouterInterface {
 	// declaration of vars
@@ -41,7 +42,9 @@ public class Router implements RouterInterface {
 		// get address
 		int address = p.getAddress();
 		// add address to queue, if fails will add to droppedPackets
-		if(!queues[address].offer(p)){
+		try{
+			queues[address].offer(p);
+		}catch(NoSuchElementException e){
 			droppedPackets.add(p);
 			return false;
 		}
@@ -51,7 +54,7 @@ public class Router implements RouterInterface {
 
 	@Override
 	public List<Packet> getDroppedPackets() {
-		// creates a new arrayList to hold droppedPackets
+		// temp holds droppedPackets
 		List<Packet> temp = new ArrayList<Packet>(droppedPackets);
 		// resets droppedPackets to empty list
 		droppedPackets = new ArrayList<Packet>();

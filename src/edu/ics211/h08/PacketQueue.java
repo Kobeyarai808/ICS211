@@ -45,7 +45,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
 
     //removes a packet from the queue
     @Override public Packet poll() {
-        if(size==10){
+        if(size==0){
             throw new NoSuchElementException();
         }
         size--;
