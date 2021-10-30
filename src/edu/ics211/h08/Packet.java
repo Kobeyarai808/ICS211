@@ -1,9 +1,11 @@
 package edu.ics211.h08;
 
 public class Packet {
+	//variable declaration
 	private int address;
 
 	public Packet(int destination) {
+		//variable init
 		address = destination;
 	    }
 	

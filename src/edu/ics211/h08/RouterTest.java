@@ -16,13 +16,13 @@ class RouterTest {
 		testRouter = new Router(new PacketSender());
 		numPackets = new int [][] {
 				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1},
-				{0,1,2,3,4,5,6,7,0,1}};
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0},
+				{0,1,2,0,1,2,0,1,2,0}};
 	}
 
 	//Main Router Test Case
@@ -42,7 +42,7 @@ class RouterTest {
 		//Assertions to see if the loops and methods ran correctly and without invariants.
 		assertEquals(10,testRouter.getTime());
 		java.util.List<Packet> droppedPackets = testRouter.getDroppedPackets();
-		assertEquals(141,droppedPackets.size());//Why did it change from 16... Oh wells.
+		assertEquals(43,droppedPackets.size());//Why did it change from 16... Oh wells.
 		java.util.List<Packet> droppedPackets2 = testRouter.getDroppedPackets();
 		assertEquals(0, droppedPackets2.size());
 	}

@@ -10,7 +10,7 @@ class QueueTest {
 	PacketQueue test;
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 		test = new PacketQueue();
 	}
 
