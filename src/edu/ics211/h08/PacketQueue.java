@@ -2,6 +2,7 @@ package edu.ics211.h08;
 
 import java.util.AbstractQueue;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> {
@@ -35,7 +36,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     //attempts to add packet to queue and return true, if full/fails returns false
     @Override public boolean offer(Packet packet) {
         if(size==10){
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         size++;
         queue.add(packet);
@@ -45,7 +46,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     //removes a packet from the queue
     @Override public Packet poll() {
         if(size==10){
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         size--;
         return iterator().next();
