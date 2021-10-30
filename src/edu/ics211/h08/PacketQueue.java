@@ -1,6 +1,5 @@
 package edu.ics211.h08;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.AbstractQueue;
 import java.util.Iterator;
 import java.util.Queue;
@@ -36,7 +35,7 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
     //attempts to add packet to queue and return true, if full/fails returns false
     @Override public boolean offer(Packet packet) {
         if(size==10){
-            return false;
+            throw new IndexOutOfBoundsException();
         }
         size++;
         queue.add(packet);
@@ -45,9 +44,11 @@ public class PacketQueue extends AbstractQueue<Packet> implements Queue<Packet> 
 
     //removes a packet from the queue
     @Override public Packet poll() {
-        Packet temp = iterator().next(); //allows exception to be thrown and not modify size
+        if(size==10){
+            throw new IndexOutOfBoundsException();
+        }
         size--;
-        return temp;
+        return iterator().next();
     }
 
     //returns current packet without incrementing the iterator
