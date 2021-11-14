@@ -17,9 +17,25 @@ public class MyBinaryTreeNode {
         return true;
     }
 
+    public boolean hasLeftRef(){
+        return leftReference!=null;
+    }
+
+    public MyBinaryTreeNode getLeftRef(){
+        return leftReference;
+    }
+
     public boolean addRightRef(MyBinaryTreeNode rightRef){
         rightReference = rightRef;
         return true;
+    }
+
+    public boolean hasRightRef(){
+        return rightReference!=null;
+    }
+
+    public MyBinaryTreeNode getRightRef(){
+        return rightReference;
     }
 
     public double getValue(){
