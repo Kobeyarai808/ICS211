@@ -58,6 +58,19 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
 
     @Override
     public boolean has(double value) {
+        return hasHelper(value, head);
+    }
+
+    public boolean hasHelper(double value, MyBinaryTreeNode head) {
+        if(head.getValue()>value){
+            return hasHelper(value, head.getLeftRef());
+        }
+        else if(head.getValue()<value){
+            return hasHelper(value, head.getRightRef());
+        }
+        else if(head.getValue()==value){
+            return true;
+        }
         return false;
     }
 
