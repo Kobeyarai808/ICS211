@@ -8,6 +8,7 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
         DoubleBinarySearchTree testing = new DoubleBinarySearchTree(new double[]{4.0, 3.0, 5.0});
         testing.add(1.0);
         testing.add(2.0);
+        System.out.println(testing.head.getValue());
         System.out.println(testing.head.getLeftRef().getLeftRef().getValue());
         System.out.println(testing.head.getLeftRef().getLeftRef().getRightRef().getValue());
     }
@@ -20,11 +21,9 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
     // constructor, creates a binary search tree containing all the given values
     public DoubleBinarySearchTree(double[] initialValues){
         head = new MyBinaryTreeNode(initialValues[0]);
-        /*for(int i=1;i<initialValues.length;i++){
-            testing.add(initialValues[i]);
-        }*/
-        head.addLeftRef(new MyBinaryTreeNode(initialValues[1]));
-        head.addRightRef(new MyBinaryTreeNode(initialValues[2]));
+        for(int i=1;i<initialValues.length;i++){
+            add(initialValues[i]);
+        }
     }
 
     @Override
@@ -87,10 +86,31 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
 
     @Override
     public double[] all() {
-        return null;
+        return allHelper(new double[10], head, countNodes(head));
     }
 
-    public double[] allHelper(double[] arr){
-        return null;
+    public double[] allHelper(double[] arr, MyBinaryTreeNode head, int index){
+        if(head==null){
+
+        }
+        else{
+            allHelper(arr, head.getLeftRef(),index);
+            arr[index+1] = head.getValue();
+            allHelper(arr, head.getRightRef(),index+2);
+        }
+        return arr;
+    }
+
+    public int countNodes(MyBinaryTreeNode head){
+        if(head==null) {
+            return 0;
+        }
+        else if(head.hasLeftRef()){
+            return 1+countNodes(head.getLeftRef());
+        }
+        else if(head.hasRightRef()){
+            return 1+countNodes(head.getRightRef());
+        }
+        return 1;
     }
 }
