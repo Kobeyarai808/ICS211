@@ -88,11 +88,19 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
         if (root == null) {
             return 0;
         }
-        else if(root.hasRightRef()){
-            return depthHelper(root.getRightRef())+1;
+        else if(root.hasRightRef()&&root.hasLeftRef()){
+            int rightDepth = depthHelper(root.getRightRef())+1;
+            int leftDepth = depthHelper(root.getLeftRef())+1;
+            if(rightDepth>leftDepth){
+                return rightDepth;
+            }
+            return leftDepth;
         }
         else if(root.hasLeftRef()){
             return depthHelper(root.getLeftRef())+1;
+        }
+        else if(root.hasRightRef()){
+            return depthHelper(root.getRightRef())+1;
         }
         return 1;
     }
