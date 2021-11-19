@@ -143,16 +143,27 @@ public class DoubleBinarySearchTree implements DoubleBinarySearchTreeInterface{
 
     public double[] allHelper(double[] arr, MyBinaryTreeNode head, int index){
         if(head==null){
-
         }
         else{
             System.out.println("Thing iterating next: "+head.getLeftRef());
+            if(head.getLeftRef()!=null){
+                allHelper(arr, head.getLeftRef(),index);
+            }
+            arr[allFindNextIndex(arr)] = head.getValue();
+            System.out.println("VALUE: "+head.getValue());
             System.out.println("Thing iterating next: "+head.getRightRef());
-            allHelper(arr, head.getLeftRef(),index);
-            arr[index++] = head.getValue();
-            allHelper(arr, head.getRightRef(),index);
+            if(head.getRightRef()!=null){
+                allHelper(arr, head.getRightRef(),index);
+            }
         }
         return arr;
+    }
+
+    public int allFindNextIndex(double arr[]){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0.0) return i;
+        }
+        return -1;
     }
 
     public int countNodes(MyBinaryTreeNode head){
