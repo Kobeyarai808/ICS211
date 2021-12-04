@@ -1,13 +1,19 @@
 package edu.ics211.h11;
 
 import java.io.*;
-import java.nio.file.Files;
 
 public class Compress {
 
+    /**
+     * Compress, creates a compression object that either compresses a text file or decompresses a Huffman Encoded File
+     * @param file is the file name to compress/decompress
+     * @throws IOException
+     */
     public Compress(String file) throws IOException {
+        //Variable declarations
         FileInputStream in = null;
         StringBuilder stringBuilder = new StringBuilder();
+        //Read in the txt file to create a Huffman tree
         try {
             in = new FileInputStream(file.substring(0,file.length()-4)+".txt");
             int c;
@@ -19,6 +25,7 @@ public class Compress {
         }
         Huffman huffman = new Huffman(stringBuilder.toString());
 
+        //Check to see if the file being inputted is a txt file, if so encode it
         if(file.substring(file.length()-4,file.length()).equals(".txt")){
             FileOutputStream out = null;
             try{
@@ -35,6 +42,7 @@ public class Compress {
                 out.close();
             }
         }
+        //If the file is not a txt file, it must be a huf file, if so decode it
         else{
             FileInputStream in2 = new FileInputStream(file);
             BufferedWriter out2 = new BufferedWriter(new FileWriter(file.substring(0,file.length()-4)+".211.txt"));

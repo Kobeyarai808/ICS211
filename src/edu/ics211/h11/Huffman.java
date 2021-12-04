@@ -149,52 +149,79 @@ public class Huffman {
         tree = queue;
     }
 
+    /**
+     * encode, a method that compresses a string by using creating a huffman tree.
+     * @oaram s is the string to be encoded
+     * @return a BitString with the representation of the string s
+     */
     public BitStringInterface encode(String s) {
+        //Variable declarations
         Huffman huffman = new Huffman(s);
         BitString bitString = new BitString();
         String str = "";
+        //Loop through all elements in the tree and call bitToBool()
         for (int i=0; i<s.length(); i++) {
             str = huffman.tree.findChar(s.charAt(i));
-            Boolean[] boolArr = bitToBool(new Boolean[str.length()],str,0);
+            Boolean[] boolArr = bitToBool(new Boolean[str.length()],0,str);
             bitString.addBits(boolArr);
         }
         return bitString;
     }
 
-    public Boolean[] bitToBool( Boolean[] bitArr,String str, int index) {
+    /**
+     * bitToBool, a helper method that converts the array of bits (1s and 0s) to an array of booleans.
+     * @param bitArr is the boolean output array being created.
+     * @param str is the string that is being encoded.
+     * @param index is the current index being converted to a boolean.
+     * @return the boolean array after working on the index 'index'.
+     */
+    public Boolean[] bitToBool(Boolean[] bitArr, int index, String str) {
+        //Check to see if at the end of the String
         if(index == str.length()) return bitArr;
+        //If the current index is a 1, set the boolean value to true
         else if (str.charAt(index) == '1') {
             bitArr[index++] = true;
-            return bitToBool(bitArr, str, index);
+            return bitToBool(bitArr, index, str);
         }
+        //If the current indexis a 0, set the boolean value to false
         else if(str.charAt(index) == '0') {
             bitArr[index++] = false;
-            return bitToBool(bitArr, str, index);
+            return bitToBool(bitArr, index, str);
         }
+        //When done, return the boolean array
         return bitArr;
     }
 
+    /**
+     * decode, a method that decodes a BitString to a readable String.
+     * @param data is the BitString to decode.
+     * @return the String output.
+     */
     public String decode(BitStringInterface data) {
-        Iterator<Boolean> iterator = data.iterator();
+        //Variable declarations
         HuffmanNode node = tree;
         String output = "";
+        Iterator<Boolean> iterator = data.iterator();
+        //Loop through the entire Huffman Tree
         while(true) {
+            //Check to see if at a leaf node, adds the value to the output String.
             if(node.left == null && node.right == null) {
                 output+=node.value;
                 node = tree;
             }
+            //Checks to see if done iterating through the tree, exit
             if(!iterator.hasNext()) {
-                break;
+                return output;
             }
-            boolean bool = iterator.next();
-            if (bool==false) {
+            //If there is a left node, advance to it
+            if (!iterator.next()) {
                 node = node.left;
             }
-            else if (bool==true) {
+            //If there is a right node, advance to it
+            else{
                 node = node.right;
             }
         }
-        return output;
     }
 
     public static void testHuffman(String textOrFileName) {
